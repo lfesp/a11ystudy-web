@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import ScatterPlot from "/components/ScatterPlot";
-import Test from "/components/Test";
 import TimePlot from "/components/TimePlot";
 import Options from "/components/Options";
 import ImpactDonut from "/components/ImpactDonut";
