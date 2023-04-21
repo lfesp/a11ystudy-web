@@ -85,7 +85,7 @@ export default function SnapshotInfo({ activeSnapshot }) {
           </Tab.List>
           <Tab.Panels className="flex-grow m-2 overflow-scroll">
             {ruleClasses.map((category) => (
-              <Tab.Panel className="h-full">
+              <Tab.Panel className="h-full" key={category}>
                 {activeSnapshot[category] &&
                 activeSnapshot[category].length > 0 ? (
                   activeSnapshot[category].map((rule) => (
@@ -104,7 +104,7 @@ export default function SnapshotInfo({ activeSnapshot }) {
                         </a>
                         <div>
                           {RuleInfo[rule].tags.map((tag) => (
-                            <span className="bg-amber-100 text-amber-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                            <span key={tag} className="bg-amber-100 text-amber-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
                               {tag}
                             </span>
                           ))}
