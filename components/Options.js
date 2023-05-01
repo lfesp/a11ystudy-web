@@ -110,7 +110,7 @@ export default function Options({
             <div className="w-full flex justify-between">
               <div className="flex">
                 <h2 className="text-3xl font-bold mr-6">
-                  Interactive Visualization
+                  Accessibility Visualization
                 </h2>
                 <Popover.Button
                   className={`${
@@ -125,21 +125,22 @@ export default function Options({
                   />
                 </Popover.Button>
               </div>
-              <div className="">
-                <btn
+              <>
+                <button
                   onClick={handleClick}
-                  className={` bg-amber-100 flex justify-between  cursor-pointer items-center rounded-md text-amber-800 pl-4 pr-3 py-2 text-left text-base font-medium hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500`}
+                  className="bg-amber-100 flex justify-between  cursor-pointer items-center rounded-md text-amber-800 pl-4 pr-3 py-2 text-left text-base font-medium hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500"
                 >
                   Upload Custom Data
-                </btn>
+                </button>
                 <input
                   type="file"
                   ref={hiddenFileInput}
                   onChange={handleChange}
                   style={{ display: "none" }}
                 />
-              </div>
+              </>
             </div>
+
             <Transition
               enter="transition duration-100 ease-out"
               enterFrom="transform scale-95 -translate-y-4 opacity-0"
