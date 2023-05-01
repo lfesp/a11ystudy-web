@@ -48,7 +48,7 @@ const TimePlot = ({
           dataKey={domain}
           key={domain}
           data={data.filter((snapshot) => snapshot.domain === domain)}
-          strokeWidth={2}
+          strokeWidth={3}
           // curve={curveNatural}
           {...accessors}
         />
@@ -69,8 +69,8 @@ const TimePlot = ({
         snapTooltipToDatumX
         snapTooltipToDatumY
         showVerticalCrosshair
-        showSeriesGlyphs
-        // glyphStyle={{fill: "white", stroke: "20px"}}
+        showDatumGlyph
+        glyphStyle={{ strokeWidth: "2px", stroke: "black"}}
         renderTooltip={({ tooltipData, colorScale }) => (
           <div className="p-2">
             <p

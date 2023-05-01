@@ -1,24 +1,16 @@
-import { Transition, Combobox, Popover, Listbox } from "@headlessui/react";
+import { Transition, Combobox, Popover } from "@headlessui/react";
 import {
   ChevronRightIcon,
   CheckIcon,
   ChevronUpDownIcon,
 } from "@heroicons/react/20/solid";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef } from "react";
 
 export default function Options({
-  datasets = [
-    { id: 1, name: "Wade Cooper" },
-    { id: 2, name: "Arlene Mccoy" },
-    { id: 3, name: "Devon Webb" },
-    { id: 4, name: "Tom Cook" },
-    { id: 5, name: "Tanya Fox" },
-    { id: 6, name: "Hellen Schmidt" },
-  ],
+  handleFile,
   domains = [],
   selectedDomains,
   setSelectedDomains,
-  onApplyOptions,
 }) {
   const [domainQuery, setDomainQuery] = useState("");
 
@@ -29,6 +21,17 @@ export default function Options({
       : domains.filter((domain) =>
           domain.toLowerCase().includes(lastQueryDomain.toLowerCase())
         );
+
+  const hiddenFileInput = useRef(null);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    handleFile(fileUploaded);
+  };
 
   const domainCombobox = (
     <Combobox value={selectedDomains} onChange={setSelectedDomains} multiple>
@@ -104,22 +107,38 @@ export default function Options({
       <Popover>
         {({ open }) => (
           <>
-            <div className="w-full flex">
-              <h2 className="text-3xl font-bold mr-6">
-                Interactive Visualization
-              </h2>
-              <Popover.Button
-                className={`${
-                  open ? "bg-amber-100" : "bg-amber-100"
-                } flex justify-between items-center rounded-md text-amber-800 pl-4 pr-3 py-2 text-left text-base font-medium hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500`}
-              >
-                Options
-                <ChevronRightIcon
+            <div className="w-full flex justify-between">
+              <div className="flex">
+                <h2 className="text-3xl font-bold mr-6">
+                  Interactive Visualization
+                </h2>
+                <Popover.Button
                   className={`${
-                    open ? "rotate-90 transform" : ""
-                  } h-5 w-5 text-amber-800`}
+                    open ? "bg-amber-100" : "bg-amber-100"
+                  } flex justify-between items-center rounded-md text-amber-800 pl-4 pr-3 py-2 text-left text-base font-medium hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500`}
+                >
+                  Options
+                  <ChevronRightIcon
+                    className={`${
+                      open ? "rotate-90 transform" : ""
+                    } h-5 w-5 text-amber-800`}
+                  />
+                </Popover.Button>
+              </div>
+              <div className="">
+                <btn
+                  onClick={handleClick}
+                  className={` bg-amber-100 flex justify-between  cursor-pointer items-center rounded-md text-amber-800 pl-4 pr-3 py-2 text-left text-base font-medium hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500`}
+                >
+                  Upload Custom Data
+                </btn>
+                <input
+                  type="file"
+                  ref={hiddenFileInput}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
                 />
-              </Popover.Button>
+              </div>
             </div>
             <Transition
               enter="transition duration-100 ease-out"

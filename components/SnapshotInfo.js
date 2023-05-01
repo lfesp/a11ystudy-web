@@ -1,5 +1,5 @@
 import { useContext, Fragment } from "react";
-import RuleInfo from "./wcag20_rules";
+import RuleInfo from "./axe_rules";
 import { DataContext } from "@visx/xychart";
 import { timeFormat } from "d3";
 import {
@@ -24,7 +24,7 @@ export default function SnapshotInfo({ activeSnapshot }) {
   const { colorScale } = useContext(DataContext);
 
   if (!activeSnapshot)
-    return <h3 className="text-3xl py-4 font-bold">No snapshot selected</h3>;
+    return <h3 className="text-3xl py-4 font-bold">Select a datapoint to view details</h3>;
   return (
     <div>
       <div className="flex justify-between items-center mb-2">
@@ -45,11 +45,11 @@ export default function SnapshotInfo({ activeSnapshot }) {
         <div>
           <a
             href={activeSnapshot.url}
-            className="block pl-4 pr-3 py-2 text-center text-base rounded-md font-medium bg-amber-100 text-amber-800 hover:bg-amber-200"
+            className="block pl-4 pr-3 py-2 text-center text-base rounded-md font-medium bg-amber-100 text-amber-800 hover:bg-amber-200 focus:outline-none focus-visible:ring focus-visible:ring-amber-500"
             target="_blank"
             // style={{backgroundColor:colorScale(activeSnapshot.domain)}}
           >
-            Visit Snapshot
+            Visit Archived Site
             <ArrowTopRightOnSquareIcon className="inline ml-1 mb-1 h-4 w-4" />
           </a>
         </div>

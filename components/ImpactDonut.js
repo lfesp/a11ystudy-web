@@ -38,6 +38,62 @@ function Donut({ width, height, activeSnapshot, label = ""}) {
   const top = centerY + margin.top;
   const left = centerX + margin.left;
 
+  if (!activeSnapshot) {
+    return (
+      <svg width={width} height={height} className="block">
+        <Group top={top} left={left}>
+          <Text
+            verticalAnchor="middle"
+            textAnchor="middle"
+            fontSize={twConfig.theme.fontSize.sm[0]}
+            fontFamily="system-ui"
+          >
+            No datapoint selected
+          </Text>
+        </Group>
+        <Text
+          x={width / 2}
+          y={height - 8}
+          verticalAnchor="end"
+          textAnchor="middle"
+          fontWeight={600}
+          fontSize={twConfig.theme.fontSize.sm[0]}
+          fontFamily="system-ui"
+        >
+          {label}
+        </Text>
+      </svg>
+    );
+  }
+
+  if (!activeSnapshot.violations || activeSnapshot.violations.length === 0 ) {
+    return (
+      <svg width={width} height={height} className="block">
+        <Group top={top} left={left}>
+          <Text
+            verticalAnchor="middle"
+            textAnchor="middle"
+            fontSize={twConfig.theme.fontSize.sm[0]}
+            fontFamily="system-ui"
+          >
+            No violations
+          </Text>
+        </Group>
+        <Text
+          x={width / 2}
+          y={height - 8}
+          verticalAnchor="end"
+          textAnchor="middle"
+          fontWeight={600}
+          fontSize={twConfig.theme.fontSize.sm[0]}
+          fontFamily="system-ui"
+        >
+          {label}
+        </Text>
+      </svg>
+    );
+  }
+
   return (
     <svg width={width} height={height} className="block">
       <Group top={top} left={left}>
